@@ -1,25 +1,18 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
+const { MONGODB_URL } = process.env;
 
-require("dotenv");
-
-
-const dbConnect = () => {
-
+exports.connect = () => {
 	mongoose
-		.connect(process.env.DATABASE_URL, {
-			useNewUrlParser: true,
+		.connect(MONGODB_URL, {
+			useNewUrlparser: true,
 			useUnifiedTopology: true,
 		})
-	
-		.then(() => console.log("DB CONNECTION SUCCESS"))
-
+		.then(console.log(`DB Connection Success`))
 		.catch((err) => {
-			console.log(`DB CONNECTION ISSUES`);
-			console.error(err.message);
+			console.log(`DB Connection Failed`);
+			console.log(err);
 			process.exit(1);
 		});
 };
-
-// Exporting the dbConnect function for use in other files
-module.exports = dbConnect;
