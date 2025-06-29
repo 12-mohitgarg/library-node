@@ -27,6 +27,11 @@ const libraryownerSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	status: {
+		type: String,
+		enum: ["Active", "Inactive", "Pending", "Suspended", "Deleted"],
+		default: "Pending",
+	},
 });
 
 module.exports = mongoose.model("libraryowner", libraryownerSchema);
