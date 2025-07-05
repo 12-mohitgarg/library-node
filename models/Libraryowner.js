@@ -21,13 +21,9 @@ const libraryOwnerSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: true,
+    
   },
-  uniqueCode: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+ 
   status: {
     type: String,
     enum: ["Active", "Inactive", "Pending", "Suspended", "Deleted"],
@@ -55,10 +51,7 @@ const libraryOwnerSchema = new mongoose.Schema({
       type: String,
       default: "LibraryOwner",
     },
-  expiresAt: {
-    type: Date,
-    required: true,
-  },
+
 }, { timestamps: true });
 
 module.exports = mongoose.model("LibraryOwner", libraryOwnerSchema);

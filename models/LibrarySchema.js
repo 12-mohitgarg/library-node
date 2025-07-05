@@ -9,6 +9,37 @@ const librarySchema = new mongoose.Schema({
   libraryName: {
     type: String,
     required: true,
+    trim: true,
+  },
+   images: [{
+    type: String,
+    
+  }],
+
+  fasalitys: [{
+    type: String,
+  }],
+  description: {
+    type: String,
+   
+    trim: true,
+  },
+  contactNumber: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    
+  },
+  
+   uniqueCode: {
+    type: String,
+    required: true,
+    unique: true,
   },
   numberOfStudents: {
     type: Number,
@@ -40,6 +71,12 @@ const librarySchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
+  },
+
+    expiresAt: {
+    type: Date,
+    required: true,
+    default:Date.now,
   },
 }, { timestamps: true });
 

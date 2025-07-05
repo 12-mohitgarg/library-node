@@ -37,6 +37,8 @@ exports.auth = async (req, res, next) => {
     });
   }
 };
+
+
 exports.isStudent = async (req, res, next) => {
   try {
     const userDetails = await Student.findOne({ phoneNumber: req.user.phoneNumber });
@@ -54,6 +56,8 @@ exports.isStudent = async (req, res, next) => {
       .json({ success: false, message: `User Role Can't be Verified` });
   }
 };
+
+
 exports.isAdmin = async (req, res, next) => {
   try {
     const userDetails = await Admin.findOne({ email: req.user.email });
@@ -71,6 +75,8 @@ exports.isAdmin = async (req, res, next) => {
       .json({ success: false, message: `User Role Can't be Verified` });
   }
 };
+
+
 exports.isInstructor = async (req, res, next) => {
   try {
     const userDetails = await Instructor.findOne({ email: req.user.email });
@@ -91,6 +97,7 @@ exports.isInstructor = async (req, res, next) => {
       .json({ success: false, message: `User Role Can't be Verified` });
   }
 };
+
 exports.isLibraryowner = async (req, res, next) => {
   try {
     const userDetails = await Libraryowner.findOne({ email: req.user.email });

@@ -18,7 +18,7 @@ const ratingAndReviewSchema = new mongoose.Schema({
 	library: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,
-		ref: "libraryowner",
+		ref: "Library",
 		
 	},
 });
