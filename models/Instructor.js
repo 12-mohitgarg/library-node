@@ -52,7 +52,10 @@ const instructorSchema = new mongoose.Schema(
     image: {
       type: String,
     },
- 
+     accountType: {
+      type: String,
+      default: "Instructor",
+    },
 
   },
   { timestamps: true }

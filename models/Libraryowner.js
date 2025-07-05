@@ -10,6 +10,11 @@ const libraryOwnerSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  phoneNumber: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
   password: {
     type: String,
     required: true,
@@ -45,6 +50,14 @@ const libraryOwnerSchema = new mongoose.Schema({
       type: String,
       match: /^[2-9]{1}[0-9]{11}$/,
     },
+  },
+   accountType: {
+      type: String,
+      default: "LibraryOwner",
+    },
+  expiresAt: {
+    type: Date,
+    required: true,
   },
 }, { timestamps: true });
 

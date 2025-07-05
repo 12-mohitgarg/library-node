@@ -15,6 +15,11 @@ const adminSchema = new mongoose.Schema(
       required: true,
     },
 
+    accountType: {
+      type: String,
+      default: "Admin",
+    },
+
 
   },
   { timestamps: true }

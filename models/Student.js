@@ -9,12 +9,17 @@ const studentSchema = new mongoose.Schema(
     },
     email: {
       type: String,
+    
+      trim: true,
+    },
+    phoneNumber: {
+      type: Number,
       required: true,
       trim: true,
     },
     password: {
       type: String,
-      required: true,
+    
     },
     active: {
       type: Boolean,
@@ -51,6 +56,10 @@ const studentSchema = new mongoose.Schema(
     },
     image: {
       type: String,
+    },
+     accountType: {
+      type: String,
+      default: "Student",
     },
   },
   { timestamps: true }
