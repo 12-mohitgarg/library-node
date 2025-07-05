@@ -16,6 +16,12 @@ const librarySchema = new mongoose.Schema({
     
   }],
 
+  sloats:[{
+     type: mongoose.Schema.Types.ObjectId,
+    ref: "Slot",
+    required: true,
+  }],
+
   fasalitys: [{
     type: String,
   }],

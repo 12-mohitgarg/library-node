@@ -9,7 +9,6 @@ const studentSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-    
       trim: true,
     },
     phoneNumber: {
@@ -25,10 +24,7 @@ const studentSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    approved: {
-      type: Boolean,
-      default: true,
-    },
+  
     courses: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -40,15 +36,18 @@ const studentSchema = new mongoose.Schema(
         seatId: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Seat",
-          required: true,
+         
         },
         expiresAt: {
           type: Date,
-          required: true,
+        
         },
       },
     ],
     token: {
+      type: String,
+    },
+    fcm_token: {
       type: String,
     },
     resetPasswordExpires: {

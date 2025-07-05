@@ -7,7 +7,13 @@ const notificationSchema = new mongoose.Schema(
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
         ref: "Student",
-      required: true,
+      
+    
+    },
+    library_owner_id: {
+      type: mongoose.Schema.Types.ObjectId,
+        ref: "LibraryOwner",
+      
     
     },
     title: {
@@ -25,7 +31,7 @@ const notificationSchema = new mongoose.Schema(
     status: {
        type: String,
       enum: ["0", "1"],
-      default: "0", // 0 for send, 1 for not send
+      default: "0",
     },
 
 
