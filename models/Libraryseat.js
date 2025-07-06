@@ -7,6 +7,11 @@ const libraryseatSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    amount: {
+      type: Number,
+      required: true,
+      trim: true,
+    },
     libraryId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Library", 
@@ -26,9 +31,14 @@ const libraryseatSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    status:{
+      type:String,
+       enum: ["Active", "Inactive", "Blocked", "Maintenance", "Reserved", "Unavailable"],
+      default: "Active",
+    },
     subscribedBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Student", // Assuming a Student model
+      ref: "Student", 
       default: null,
     },
     subscriptionEnd: {

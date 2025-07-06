@@ -39,6 +39,23 @@ exports.addNotificationtostudent = async (req, res) => {
     }
 }
 
+exports.getstudentAllNotifications = async (req, res) => {
+    try {
+
+        const id = req.user.id
+
+        const data = await Notification.find({ user_id: id }).sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success:true,
+            message:'All notification data get suuccessfully',
+            data:data
+        })
+        
+    } catch (error) {
+        
+    }
+}
 
 exports.addNotificationtolibraryowner = async (req, res) => {
     try {

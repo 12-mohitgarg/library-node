@@ -107,7 +107,7 @@ exports.getlibraryowner = async (req, res) => {
 
 exports.getlibraryownerbyid = async (req, res) => {
     try {
-        const { id } = req.params;
+        const id  = req.user.id;
 
         const libraryOwner = await LibraryOwner.findById(id);
 
@@ -131,7 +131,7 @@ exports.getlibraryownerbyid = async (req, res) => {
 
 exports.deletelibraryowner = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.user.id;
 
         const libraryOwner = await LibraryOwner.findById(id);
 
