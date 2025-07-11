@@ -5,8 +5,8 @@ const { MONGODB_URL } = process.env;
 
 exports.connect = () => {
 	mongoose
-		.connect(MONGODB_URL, {
-			useNewUrlparser: true,
+		.connect("mongodb://localhost:27017/library-node", {
+			useNewUrlParser: true,
 			useUnifiedTopology: true,
 		})
 		.then(console.log(`DB Connection Success`))

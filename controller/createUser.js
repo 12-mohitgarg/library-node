@@ -1,34 +1,32 @@
+const { HTTP_STATUS } = require("../constants/httpStatus");
+const { ApiError } = require("../handlers/apiErrorHandler");
+const { ApiResponse } = require("../handlers/apiResponseHandler");
+const { asyncHandler } = require("../handlers/wrapAsyncHandler");
 const User = require("../models/Libraryowner");
 
-exports.createUser = async (req, res) => {
-  try {
-    console.log("req body", req.body);
-    const { name, email, title, department, role } = req.body;
-    if (!name || !email || !title || !role || !department) {
-      console.log("not all fields...");
-      return res.status(400).json({
-        status: 400,
-        message: "Please fill all fields",
-      });
-    }
-    const user = await User.create({
-      name,
-      email,
-      title,
-      department,
-      role,
-      image: `https://api.dicebear.com/5.x/initials/svg?seed=${name}`,
-    });
-    return res.status(200).json({
-      status: 201,
-      message: "User created successfully",
-      data: user,
-    });
-  } catch (error) {
-    console.log("error", error);
-    return res.status(500).json({
-      status: 500,
-      message: error.message,
-    });
+exports.createUser = asyncHandler(async (req, res) => {
+  const { name, email, title, department, role } = req.body;
+
+  if ([name, email, title, department, role].some((field) => field.trim() === "")) {
+    return res
+      .status(HTTP_STATUS.BAD_REQUEST)
+      .json(
+        new ApiError(
+          HTTP_STATUS.BAD_REQUEST,
+          "Please fill all fields"
+        ));
   }
-};
+
+  const user = await User.create({
+    name,
+    email,
+    title,
+    department,
+    role,
+    image: `https://api.dicebear.com/5.x/initials/svg?seed=${name}`,
+  });
+
+  return res
+    .status(HTTP_STATUS.CREATED)
+    .json(new ApiResponse(HTTP_STATUS.CREATED, 'User created successfully', user));
+});

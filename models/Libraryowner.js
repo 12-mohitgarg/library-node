@@ -12,12 +12,12 @@ const libraryOwnerSchema = new mongoose.Schema({
   },
   phoneNumber: {
     type: Number,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
   },
   password: {
     type: String,
-    required: true,
+    // required: true,
   },
   image: {
     type: String,
