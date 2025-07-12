@@ -1,7 +1,7 @@
 const Admin = require("../models/Admin");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const LibraryOwner = require("../models/Libraryowner");
+import {User as LibraryOwner} from "../models/Libraryowner";
 
 
 exports.addlibraryowner = async (req, res) => {

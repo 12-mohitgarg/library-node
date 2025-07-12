@@ -1,5 +1,5 @@
-const User = require("../models/Libraryowner");
-exports.getUser = async (req, res) => {
+import User from "../models/Libraryowner.js";
+export const getUser = async (req, res) => {
 	try {
 		const userData = await User.find({});
 		res.json({ success: true, data: userData });

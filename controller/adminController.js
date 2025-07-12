@@ -5,10 +5,10 @@ const jwt = require("jsonwebtoken");
 
 exports.addAdmin = async (req, res) => {
     try {
-        const {  email, password } = req.body;
+        const { email, password } = req.body;
 
-        if(!email  || !password){
-           return res.status(400).json({
+        if (!email || !password) {
+            return res.status(400).json({
                 success: false,
                 message: "Please provide all the required fields"
             });
@@ -17,7 +17,7 @@ exports.addAdmin = async (req, res) => {
             email: email
         })
 
-        if(admindata){
+        if (admindata) {
             return res.status(400).json({
                 success: false,
                 message: "Admin already exists"
@@ -28,7 +28,7 @@ exports.addAdmin = async (req, res) => {
 
         const newAdmin = await Admin.create({
             email,
-            password:encryptedPassword
+            password: encryptedPassword
         });
 
 
@@ -47,7 +47,7 @@ exports.loginAdmin = async (req, res) => {
 
         const { email, password } = req.body;
 
-        if(!email || !password){
+        if (!email || !password) {
             return res.status(400).json({
                 success: false,
                 message: "Please provide all the required fields"
@@ -56,7 +56,7 @@ exports.loginAdmin = async (req, res) => {
 
         const adminData = await Admin.findOne({ email });
 
-        if(!adminData){
+        if (!adminData) {
             return res.status(400).json({
                 success: false,
                 message: "Admin not found"
@@ -65,21 +65,21 @@ exports.loginAdmin = async (req, res) => {
 
         const isPasswordValid = await bcrypt.compare(password, adminData.password);
 
-        if(!isPasswordValid){
+        if (!isPasswordValid) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid credentials"
             });
         }
 
-        const token =  jwt.sign(
+        const token = jwt.sign(
             {
                 email: adminData.email,
                 id: adminData._id,
                 accountType: adminData.accountType
             },
             process.env.JWT_SECRET,
-           
+
         );
 
         res.status(200).json({

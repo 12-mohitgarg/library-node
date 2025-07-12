@@ -1,10 +1,10 @@
-const { HTTP_STATUS } = require("../constants/httpStatus");
-const { ApiError } = require("../handlers/apiErrorHandler");
-const { ApiResponse } = require("../handlers/apiResponseHandler");
-const { asyncHandler } = require("../handlers/wrapAsyncHandler");
-const User = require("../models/Libraryowner");
+import {HTTP_STATUS} from "../constants/httpStatus.js";
+import ApiError from "../handlers/apiErrorHandler.js";
+import ApiResponse from "../handlers/apiResponseHandler.js";
+import asyncHandler from "../handlers/wrapAsyncHandler.js"
+import User from "../models/Libraryowner.js";
 
-exports.createUser = asyncHandler(async (req, res) => {
+export const createUser = asyncHandler(async (req, res) => {
   const { name, email, title, department, role } = req.body;
 
   if ([name, email, title, department, role].some((field) => field.trim() === "")) {

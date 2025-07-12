@@ -1,28 +1,20 @@
-const express = require("express");
-require("dotenv").config();
-const database = require("./config/database");
-const userRoutes = require("./routes/user");
-const app = express();
-var cors = require("cors");
+import dotenv from "dotenv";
+import app from "./app.js";
+import { connectDb } from "./Db/db.js";
+
 const PORT = process.env.PORT || 8080;
 
-app.use(
-  cors({
-    origin: "*",
+connectDb()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+    app.on("error", (error) => {
+      console.log("Error in starting server", error);
+    });
   })
-);
-// Middleware
-app.use(express.json());
+  .catch((error) => {
+    console.log("Error in connecting to database", error);
+    process.exit(1);
+  });
 
-app.use("/api/v1", userRoutes);
-
-// CORS Configuration
-app.listen(PORT, () => {
-  console.log(`THE SERVER IS UP AND RUNNING AT PORT ${PORT}`);
-});
-
-database.connect();
-
-app.get("/", (req, res) => {
-  res.send(`<h1>Backend is Running and this is '/' Route</h1>`);
-});

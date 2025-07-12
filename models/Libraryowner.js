@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const libraryOwnerSchema = new mongoose.Schema({
   name: {
@@ -54,4 +54,6 @@ const libraryOwnerSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model("LibraryOwner", libraryOwnerSchema);
+const User = mongoose.model("User", libraryOwnerSchema);
+
+export default User;
