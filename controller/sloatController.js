@@ -1,9 +1,9 @@
-const Slot = require("../models/Slots");
-const mongoose = require("mongoose");
+import asyncHandler from "../handlers/wrapAsyncHandler.js";
+import Slot from "../models/Slots.js";
+import mongoose from "mongoose";
 
-
-exports.addSlot = async (req, res) => {
-    try {
+export const addSlot = asyncHandler(async (req, res) => {
+   
         const { start, end } = req.body;
 
         if (!start || !end ) {
@@ -26,14 +26,10 @@ exports.addSlot = async (req, res) => {
             message: "Slot created successfully",
             data: newSlot
         });
-    } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
-    }
-}
+});
 
 
-exports.getAllSlots = async (req, res) => {
-    try {
+export const getAllSlots =asyncHandler( async (req, res) => {
         const slots = await Slot.find();
 
         if (!slots || slots.length === 0) {
@@ -47,8 +43,6 @@ exports.getAllSlots = async (req, res) => {
             success: true,
             data: slots
         });
-    } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
-    }
-};
+    
+});
 

@@ -6,6 +6,8 @@ import { userRoutes } from "./routes/user.js";
 
 const app = express();
 
+dotenv.config();
+
 app.use(
     cors({
         origin: "*",

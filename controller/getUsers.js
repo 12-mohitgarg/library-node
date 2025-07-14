@@ -1,9 +1,7 @@
+import asyncHandler from "../handlers/wrapAsyncHandler.js";
 import User from "../models/Libraryowner.js";
-export const getUser = async (req, res) => {
-	try {
-		const userData = await User.find({});
-		res.json({ success: true, data: userData });
-	} catch (error) {
-		res.status(500).json({ success: false, error: error });
-	}
-};
+
+export const getUser = asyncHandler(async (req, res) => {
+    const userData = await User.find({});
+    res.json({ success: true, data: userData });
+});

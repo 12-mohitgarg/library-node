@@ -1,10 +1,9 @@
-const Admin = require("../models/Admin");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import Admin from "../models/Admin.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import asyncHandler from "../handlers/wrapAsyncHandler.js";
 
-
-exports.addAdmin = async (req, res) => {
-    try {
+export const addAdmin =asyncHandler( async (req, res) => {
         const { email, password } = req.body;
 
         if (!email || !password) {
@@ -37,14 +36,11 @@ exports.addAdmin = async (req, res) => {
             message: "Admin created successfully",
             data: newAdmin
         });
-    } catch (error) {
-        res.status(500).json({ success: false, error: error });
-    }
-};
+    
+});
 
-exports.loginAdmin = async (req, res) => {
-    try {
-
+export const loginAdmin = asyncHandler(async (req, res) => {
+   
         const { email, password } = req.body;
 
         if (!email || !password) {
@@ -88,10 +84,7 @@ exports.loginAdmin = async (req, res) => {
             data: adminData,
             token: token
         });
-
-    } catch (error) {
-        res.status(500).json({ success: false, error: error });
-    }
-};
+   
+});
 
 

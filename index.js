@@ -4,6 +4,8 @@ import { connectDb } from "./Db/db.js";
 
 const PORT = process.env.PORT || 8080;
 
+dotenv.config();
+
 connectDb()
   .then(() => {
     app.listen(PORT, () => {

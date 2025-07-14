@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-
+import mongoose from "mongoose";
 const libraryseatSchema = new mongoose.Schema(
   {
     seatNumber: {
@@ -49,4 +48,7 @@ const libraryseatSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Seat", libraryseatSchema);
+
+const LibrarySeat = mongoose.model("Seat", libraryseatSchema);
+export default LibrarySeat;
+

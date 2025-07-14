@@ -1,8 +1,4 @@
-const Instructor = require("../models/Instructor.js");
-exports.addInstructor = async (req, res) => {
-    try {
-       
-    } catch (error) {
-        res.status(500).json({ success: false, error: error });
-    }
-};
+import asyncHandler from "../handlers/wrapAsyncHandler.js";
+import Instructor from "../models/Instructor.js";
+
+export const addInstructor = asyncHandler(async (req, res) => {});

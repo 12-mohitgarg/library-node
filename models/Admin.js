@@ -1,5 +1,4 @@
-
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 const adminSchema = new mongoose.Schema(
   {
@@ -25,4 +24,6 @@ const adminSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model("Admin", adminSchema)
+
+const Admin = mongoose.model("Admin", adminSchema);
+export default Admin;

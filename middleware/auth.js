@@ -1,13 +1,14 @@
-const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
-const Student = require("../models/Student");
-const Admin = require("../models/Admin");
-const Libraryowner = require("../models/Libraryowner");
-const Instructor = require("../models/Instructor");
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import Student from "../models/Student.js";
+import Admin from "../models/Admin.js";
+import Libraryowner from "../models/Libraryowner.js";
+import Instructor from "../models/Instructor.js";
+
 
 dotenv.config();
 
-exports.auth = async (req, res, next) => {
+ export const auth = async (req, res, next) => {
   try {
     const token =
       req.cookies.token ||
@@ -39,7 +40,7 @@ exports.auth = async (req, res, next) => {
 };
 
 
-exports.isStudent = async (req, res, next) => {
+export const isStudent = async (req, res, next) => {
   try {
     const userDetails = await Student.findOne({ phoneNumber: req.user.phoneNumber });
 
@@ -58,7 +59,7 @@ exports.isStudent = async (req, res, next) => {
 };
 
 
-exports.isAdmin = async (req, res, next) => {
+export const isAdmin = async (req, res, next) => {
   try {
     const userDetails = await Admin.findOne({ email: req.user.email });
 
@@ -77,7 +78,7 @@ exports.isAdmin = async (req, res, next) => {
 };
 
 
-exports.isInstructor = async (req, res, next) => {
+export const isInstructor = async (req, res, next) => {
   try {
     const userDetails = await Instructor.findOne({ email: req.user.email });
     console.log(userDetails);
@@ -98,7 +99,7 @@ exports.isInstructor = async (req, res, next) => {
   }
 };
 
-exports.isLibraryowner = async (req, res, next) => {
+export const isLibraryowner = async (req, res, next) => {
   try {
     const userDetails = await Libraryowner.findOne({ email: req.user.email });
     console.log(userDetails);

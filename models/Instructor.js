@@ -1,5 +1,4 @@
-// Import the Mongoose library
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 // Define the user schema using the Mongoose Schema constructor
 const instructorSchema = new mongoose.Schema(
@@ -62,4 +61,5 @@ const instructorSchema = new mongoose.Schema(
 )
 
 
-module.exports = mongoose.model("Instructor", instructorSchema)
+const Instructor = mongoose.model("Instructor", instructorSchema);
+export default Instructor;

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const librarySchema = new mongoose.Schema({
   ownerId: {
@@ -86,4 +86,5 @@ const librarySchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-module.exports = mongoose.model("Library", librarySchema);
+const Library = mongoose.model("Library", librarySchema);
+export default Library;

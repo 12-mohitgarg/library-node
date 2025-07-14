@@ -1,6 +1,4 @@
-
-const mongoose = require("mongoose")
-
+import mongoose from "mongoose";
 const slotSchema = new mongoose.Schema(
   {
 
@@ -26,4 +24,5 @@ const slotSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model("Slot", slotSchema)
+const Slot = mongoose.model("Slot", slotSchema);
+export default Slot;

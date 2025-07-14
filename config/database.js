@@ -1,18 +1,22 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const { MONGODB_URL } = process.env;
 
-exports.connect = () => {
+export const connect = () => {
 	mongoose
-		.connect("mongodb://localhost:27017/library-node", {
+		.connect(MONGODB_URL || "mongodb://localhost:27017/library-node", {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 		})
-		.then(console.log(`DB Connection Success`))
+		.then(() => {
+			console.log("✅ DB Connection Success");
+		})
 		.catch((err) => {
-			console.log(`DB Connection Failed`);
-			console.log(err);
+			console.log("❌ DB Connection Failed");
+			console.error(err);
 			process.exit(1);
 		});
 };
